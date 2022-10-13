@@ -232,8 +232,9 @@ module MariaDBCookbook
     # build the platform string that makes up the final component of the yum repo URL
     def yum_repo_platform_string
       release = yum_releasever
+      
       # Treat Alma and Rocky as RHEL
-      if platform?('almalinux', 'rocky', 'amazon')
+      if platform?('redhat', 'almalinux', 'rocky', 'amazon')
         "rhel#{release}-#{node['kernel']['machine'] == 'x86_64' ? 'amd64' : '$basearch'}"
       else
         "#{node['platform']}#{release}-#{node['kernel']['machine'] == 'x86_64' ? 'amd64' : '$basearch'}"
